@@ -1,0 +1,45 @@
+{% extends "conexiones.html" %}
+
+{% block content %}
+    <body id="body_iniciar_sesion">
+    <div class="row">
+        <div class="col">
+            <!--NADA/NO BORRAR-->
+        </div>
+        <br>
+        <div class="col-5"> 
+            <div class="d-grid gap-4 col-7 mx-auto" >
+                <form action="/iniciar_sesion_m" method="post" id="iniciar_sesion_p_form">
+                    <div id="formulario">
+                        <div id="texto_inicio_sesion_form_p">
+                            <h4>
+                                ESPECIALISTA:
+                                Ingrese sus credenciales
+                            </h4>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input name="dni" type="text" class="form-control" id="floatingInput"  placeholder="dni" required>
+                            <label for="floatingInput" class="form-label">DNI</label>
+                        </div>
+                        <div class="form-floating">
+                            <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                            <label for="floatingPassword" class="form-label">PASSWORD</label>
+                        </div>
+                        <div id="boton_m">
+                            <!--nada-->
+                        </div>
+                        <br>
+                        <div class="d-grid gap-3 d-md-flex justify-content-md-end">
+                            <input  id="boton_p" class="btn btn-primary" type="submit"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col">
+            <!--NADA/NO BORRAR-->
+        </div>
+    </div>
+</body>
+
+{% endblock content %}

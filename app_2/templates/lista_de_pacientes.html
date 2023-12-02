@@ -1,0 +1,48 @@
+{% extends "conexiones.html" %}
+
+{% block content %}
+<body>
+    <figure id="head_medico">
+        <div class="container" >
+            <div class="row">
+                <div id="primer_columna" class="col text-center">
+                    <figure>
+                        <a href="/">
+                            <img id="icon_medico" src="static/img/user_icon.png" alt="user_icono">
+                        </a>
+                    </figure>
+                    <h4 id="titulo_admi"class="text-center">BIENVENIDO</h4>
+                    <h4 id="titulo_admi"class="text-center">ADMINISTRATIVO</h4>
+                </div>
+            </div>
+        </div>
+    </figure>
+    <div id="tabla_lista" class="container">
+        <h1 id="titulo_seleccionar_hora" class="text-center">LISTA DE PACIENTES</h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">DNI</th>
+              <th scope="col">Mail</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for usuario in usuarios %}
+              {%if usuario.tipo == 'paciente'%} 
+                <tr>
+                  <th scope="row"></th>
+                    <td>{{usuario.nombre}}</td>
+                    <td>{{usuario.apellido}}</td>
+                    <td>{{usuario.DNI}}</td>
+                    <td>{{usuario.correo}}</td>
+                </tr>
+              {%endif%}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+</body>
+{% endblock content %}

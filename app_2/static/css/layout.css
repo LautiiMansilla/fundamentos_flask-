@@ -1,0 +1,14 @@
+
+#body_base{
+    background-color: rgb(39, 110, 119);
+    /*background-image: url('/static/img/fondo_hopital_img.jpeg');*/
+    background-size: cover; /* ajusta el tamaño de la imagen para cubrir completamente el contenedor */
+    height: 100vh;
+}
+
+#formulario{
+    font-family: 'Trebuchet MS';
+    position: relative;
+    border-radius: 1px;
+
+}

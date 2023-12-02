@@ -1,0 +1,110 @@
+<!--PAGINA PRINCIPA PACIENTE DONDE SE VA A PODER SELECCIONAR TURNOS,ESPECIALIDADES y ESTUDIOS-->
+{% extends "conexiones.html" %}
+
+{% block content %}
+<body>
+    <div id="cabezal_sticky">
+        <div class="sticky-lg-top" id="sticky_top">
+            <div>
+                <div class="row" id="reduccion_fondo">
+                    <div id="primer_columna" class="col text-center">
+                        <figure>
+                            <a href="/">
+                                <img id="icon_paciente" src="static/img/user_icon.png" alt="user_icono"> 
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="col-8" id="credenciales_paciente">
+                        <label>PACIENTE:</label>
+                        <h8>  {{ nombre_usuario_actual }} {{apellido_usuario_actual}} - </h8>
+                        <br>   <!--<a href="/" id="href_paciente"></a>-->    
+                        <label for="inputId">DNI:</label>
+                        <h8> {{ dni_usuario_actual }} - </h8>
+                        <label for="inputId">OBRA SOCIAL:</label>
+                        <h8> {{ obra_social_usuario }} - </h8>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--CARDS-->
+    <div id="paciente_cards" class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            <h4 class='text-center'>TURNOS</h4>
+            <div class="card">
+                <img src="/static/img/turnos_img.jpg" class="card-img-top" alt="Turnos">
+                <div class="card-body">
+                    <h6 class="card-title text-center">Turnos online las 24 hs</h6>
+                    <div class="container text-center">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <!--NADA-->
+                            </div>
+                            <div class="col-10">
+                                <div class="d-grid gap-3 d-md-block">
+                                    <button id="botones_turnos" class="btn btn-primary" type="button"><a href="/agendar_turnos" id="botones_turnos">SACAR TURNO</a></button>
+                                    <button id="botones_turnos" class="btn btn-primary" type="button"><a href="/mis_turnos" id="botones_turnos">MIS TURNOS</a></button>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!--NADA-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4 class='text-center'>ESPECIALIDADES</h4>
+            <div class="card">
+                <img src="/static/img/especialidades.jpg" class="card-img-top" alt="Especialidades">
+                <div class="card-body">
+                    <h6 class="card-title text-center">En “Hospital el buen corazón” tenemos la mejor atención de la zona!</h6>
+                    <div class="container text-center">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <!--NADA-->
+                            </div>
+                            <div class="col-10">
+                                <div class="d-grid gap-3 d-md-block">
+                                    <button id="botones_turnos" class="btn btn-primary" type="button"><a href="/especialidades" id="botones_turnos">ESPECIALIDADES</a></button>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!--NADA-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4 class='text-center'>MIS DATOS</h4>
+            <div class="card">
+                <img id="paciente_estudios_img"src="/static/img/estudios.jpg" class="card-img-top" alt="Estudios">
+                <div class="card-body">
+                    <h6 class="card-title text-center">Ver datos personales</h6>
+                    <div class="container text-center">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <!--NADA-->
+                            </div>
+                            <div class="col-10">
+                                <div class="d-grid gap-3 d-md-block">
+                                    <button id="botones_turnos" class="btn btn-primary" type="button"><a href="/mis_datos_p" id="botones_turnos">DATOS</a></button>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!--NADA-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock content %}
+{%block boton_menu%}
+    <button class="btn btn-primary" id="b_atras"><a href="/iniciar_sesion_p" id="link_menu">Cerrar sesion</a></button>
+{%endblock boton_menu%}

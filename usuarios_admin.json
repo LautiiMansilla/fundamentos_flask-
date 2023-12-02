@@ -1,0 +1,20 @@
+[
+  {
+    "nombre": "Reinaldo",
+    "apellido": "Soto",
+    "correo": "reinaldosoto@gmail.com",
+    "contrasena": "21643743",
+    "tipo": "admin",
+    "sector": "admin",
+    "DNI": "4325698"
+  },
+  {
+    "nombre": "Franco",
+    "apellido": "Soto",
+    "correo": "francosoto@gmail.com",
+    "contrasena": "21643743",
+    "tipo": "admin",
+    "sector": "admin",
+    "DNI": "432888"
+  }
+]

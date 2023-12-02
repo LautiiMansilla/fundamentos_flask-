@@ -1,0 +1,24 @@
+Mail confirmacion de registro
+
+Poder eliminar medico ✔
+
+Confirmar turno y un Mail - comprobante ✔
+
+Mis datos hacer un perfil (datos de paciente actual) Mi perfil Mi cuenta (Nombre - apellido - turnos) ✔
+
+Perfil de administrativo (opcional) - implementar que no se pueda registrar con el mismo dni Medico. ✔
+
+Administrador eliminar turno (modificar - otra version) ✔
+
+Olvidar contraseña
+
+Turnos en la pagina de medico con su respectiva especialidad 
+
+Que no se puedan duplicar turnos 
+
+Hosting - base de datos virtual 
+
+Contraseña segura logica 
+
+Sacar prints
+

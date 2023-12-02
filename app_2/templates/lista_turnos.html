@@ -1,0 +1,71 @@
+{% extends "conexiones.html" %}
+
+{% block content %}
+    <body>
+        <div id='botones_contenedor'>
+            <figure id="">
+                <div class="container">
+                    <div class="row">
+                        <div id="primer_columna" class="col">
+                            <figure>
+                                <a href="/">
+                                    <img id="icon_medico" src="static/img/user_icon.png" alt="user_icono">
+                                </a>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </figure>
+            <h2 id="bienvenida_texto" class="text-center">TODOS LOS TURNOS</h2>
+        </div>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <div class="text-center" id="tabla_de_turnos_a">
+            <table>
+                <tr id="cabezal_tabla">
+                    <th>Fecha</th>
+                    <th></th>
+                    <th>Hora</th>
+                    <th></th>
+                    <th>Especialidad</th>
+                    <th></th>
+                    <th>Paciente</th>
+                    <th>Acciones</th>
+                </tr>
+                {% for usuario in usuarios %}
+                    {% if usuario.tipo == 'paciente' %}
+                        {% for turno in usuario.turnos %}
+                            <tr>
+                                <td>{{ turno.fecha }}</td>
+                                <td>---</td>
+                                <td>{{ turno.hora }}</td>
+                                <td>---</td>
+                                <td>{{ turno.motivo }}</td>
+                                <td>---</td>
+                                <td>{{ usuario.nombre }} {{ usuario.apellido }}</td>
+                                <td>
+                                    <form method="post" action="{{ url_for('eliminar_turno') }}">
+                                        <input type="hidden" name="dni_paciente" value="{{ usuario.DNI }}">
+                                        <input type="hidden" name="fecha_turno" value="{{ turno.fecha }}">
+                                        <input type="hidden" name="hora_turno" value="{{ turno.hora }}">
+                                        <br>
+                                        <input id="eliminar_turno_boton" class="btn btn-primary" type="submit" value="Eliminar turno">
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+    </body>
+{% endblock content %}

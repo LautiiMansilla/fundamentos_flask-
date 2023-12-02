@@ -1,0 +1,63 @@
+<!--  
+{% extends "conexiones.html" %}
+{% block content %}
+<body>
+    <div id="cabezal_sticky">
+        <div class="sticky-lg-top" id="sticky_top">
+            <div>
+                <div class="row" id="reduccion_fondo">
+                    <div id="primer_columna" class="col text-center">
+                        <figure>
+                            <a href="/">
+                                <img id="icon_paciente" src="static/img/user_icon.png" alt="user_icono"> 
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="col-8" id="credenciales_paciente">
+                        <label>PACIENTE:</label>
+                        <h8>  {{ nombre_usuario_actual }} </h8>
+                        <br>   <!--<a href="/" id="href_paciente"></a>-->    
+                        <!--<label for="inputId">DNI:</label>
+                        <h8> {{ dni_usuario_actual }} </h8>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="text-center" id="titulo_seleccionar_hora">Agendar Turnos </h1>
+    
+    <form method="post" action="{{ url_for('agendar_turno') }}">
+        <div class="container px-4 text-center">
+            <div class="row gx-5">
+                <div class="col">
+                    <div class="p-3">
+                        <input type="hidden" name="motivo" value="{{ selected_motivo }}">
+                        <input type="hidden" name="fecha" value="{{ selected_date }}">  
+                        <input type="hidden" name="hora" value="{{ selected_hora }}">
+    
+                        <label for="hora">Hora:</label>
+                        <select type="input" id="hora" name="hora" required>
+                            {% for hora in horas_disponibles %}
+                                <option value="{{ hora }}">{{ hora }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="p-3">
+                        <button type="submit" class="btn btn-primary">SELECCIONAR TURNO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    {% if message %}
+        <div class="alert alert-info" role="alert">
+            {{ message }}
+        </div>
+    {% endif %}
+</body>
+{% endblock content %}
+{%block boton_menu%}
+<button class="btn btn-primary" id="b_atras"><a href="/iniciar_sesion_p" id="link_menu">Menu</a></button>
+{%endblock boton_menu%}-->

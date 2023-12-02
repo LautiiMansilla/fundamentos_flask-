@@ -1,0 +1,58 @@
+{% extends "conexiones.html" %}
+
+{% block content %}
+<body>
+    <figure id="head_medico">
+        <div class="container" >
+            <div class="row">
+                <div id="primer_columna" class="col text-center">
+                    <figure>
+                        <a href="/">
+                            <img id="icon_medico" src="static/img/user_icon.png" alt="user_icono">
+                        </a>
+                    </figure>
+                    <h4 id="titulo_admi"class="text-center">BIENVENIDO</h4>
+                    <h4 id="titulo_admi"class="text-center">ADMINISTRATIVO</h4>
+                </div>
+            </div>
+        </div>
+    </figure>
+    <div id="tabla_lista" class="container">
+        <h1 id="titulo_seleccionar_hora" class="text-center">LISTA DE MEDICOS</h1>
+        <div class="row row-cols-4">
+            <ul class="nav justify-content-center">
+              <form method="post" action="{{ url_for('buscar_medico') }}" class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Buscar por DNI" aria-label="Buscar" name="dni_busqueda">
+                  <button class="btn btn-outline-success" type="submit">Buscar</button>
+              </form>
+            </ul> 
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">DNI</th>
+              <th scope="col">Mail</th>
+              <th scope="col">Especialidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for usuario in usuarios %}
+              {%if usuario.tipo == 'medico'%} 
+                <tr>
+                  <th scope="row"></th>
+                    <td>{{usuario.nombre}}</td>
+                    <td>{{usuario.apellido}}</td>
+                    <td>{{usuario.DNI}}</td>
+                    <td>{{usuario.correo}}</td>
+                    <td>{{usuario.especialidad}}</td>
+                </tr>
+              {%endif%}
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+</body>
+{% endblock content %}

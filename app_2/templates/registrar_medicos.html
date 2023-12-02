@@ -1,0 +1,65 @@
+{% extends "conexiones.html" %}
+{% block content %}
+<body id='body_registrar_p'>
+    <form action="/registrar_medicos" method="post">
+        <div class="container text-center">
+            <div class="row justify-content-evenly" id='registrar_p_formulario'>
+                <div>
+                    <h2>INGRESE LOS DATOS DEL PERSONAL MEDICO</h2>
+                </div> 
+                <div class="col-4">
+                    <div class="mx-auto p-2" style="width: 100%;">
+                        <label for="nombre" class="form-label text-center">Nombre</label>
+                        <input id="nombre" class="form-control text-center" type="text" placeholder="Ingresa tu nombre" name="nombre" required>
+                    </div>
+                    <br>
+                    <div class="mx-auto p-2" style="width: 100%;">
+                        <label for="apellido" class="form-label text-center">Apellido</label>
+                        <input id="apellido" class="form-control text-center" type="text" placeholder="Ingresa tu apellido" name="apellido" required>
+                    </div>
+                    <br>
+                    <div class="mx-auto p-2" style="width: 100%;">
+                        <label for="email" class="form-label text-center">Email</label>
+                        <input id="email" class="form-control text-center" type="email" placeholder="Ingresa tu email" name="email" required>
+                    </div>
+                    <br>
+                    <div class="mx-auto p-2" style="width: 100%;">
+                        
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="mx-auto p-2" style="width: 100%;">
+                        <label for="password" class="form-label text-center">Contraseña</label>
+                        <input id="password" class="form-control text-center" type="password" placeholder="Ingresa tu contraseña" name="password" required>
+                    </div>
+                    <br>
+                    <div class="mx-auto p-2" style="width: 100%;">
+                        <label for="dni" class="form-label text-center">DNI</label>
+                        <input id="dni" class="form-control text-center" type="text" placeholder="Ingresa tu DNI" name="dni" required>
+                    </div>
+                    <br>
+                    <div class="mx-auto p-2" style="width: 100%;">
+                        <label for="motivo">ESPECIALIDAD:</label>
+                        <div class="buttom">
+                            <select id="motivo" name="especialidad" required>
+                                {% for motivo in motivos_disponibles %}
+                                    <option class="form-control text-center" name="especialidad" value="{{ motivo }}">{{ motivo }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <br>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Registrar</button>    
+                </div>
+                {% if mensaje %}
+                    <div class="alert alert-info" role="alert" id="registrar_p_alerta">
+                        {{ mensaje }}<a href="/iniciar_sesion_m">Iniciar sesión</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+
+{% endblock content %}

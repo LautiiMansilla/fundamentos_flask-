@@ -1,0 +1,102 @@
+[
+  {
+    "DNI": "43254375",
+    "nombre": "Lautaro",
+    "apellido": "Mansilla",
+    "correo": "lautaro918@gmail.com",
+    "contrasena": "21643743",
+    "tipo": "paciente",
+    "obra_social": "Avalian",
+    "afiliado": 324323,
+    "turnos": [
+      {
+        "motivo": "DERMATOLOGIA",
+        "fecha": "2023-12-07",
+        "hora": "09:00"
+      },
+      {
+        "motivo": "DERMATOLOGIA",
+        "fecha": "2023-12-08",
+        "hora": "09:00"
+      }
+    ]
+  },
+  {
+    "DNI": "45285677",
+    "nombre": "Agustina",
+    "apellido": "Avalos",
+    "correo": "agustinaav007@gmail.com",
+    "contrasena": "holamundo",
+    "tipo": "paciente",
+    "obra_social": "obrasocial1",
+    "afiliado": "5533",
+    "turnos": [
+      {
+        "motivo": "OTORRINONARINGOLOGIA",
+        "fecha": "2023-12-28",
+        "hora": "17:00"
+      }
+    ]
+  },
+  {
+    "DNI": "51561651",
+    "nombre": "Lautaro",
+    "apellido": "Mansilla",
+    "correo": "lautaro918@gmail.com",
+    "contrasena": "2626",
+    "tipo": "paciente",
+    "obra_social": "Avalian",
+    "afiliado": "76878",
+    "turnos": []
+  },
+  {
+    "DNI": "512561651561",
+    "nombre": "Lautaro",
+    "apellido": "Mansilla",
+    "correo": "lautaro918@gmail.com",
+    "contrasena": "1651561",
+    "tipo": "paciente",
+    "obra_social": "Avalian",
+    "afiliado": "try",
+    "turnos": []
+  },
+  {
+    "DNI": "16716523",
+    "nombre": "Lautaro",
+    "apellido": "Mansilla",
+    "correo": "lau@gmail.com",
+    "contrasena": "21643743",
+    "tipo": "paciente",
+    "obra_social": "Avalian",
+    "afiliado": "5665",
+    "turnos": [
+      {
+        "motivo": "GASTROENTEROLOGIA",
+        "fecha": "2023-12-13",
+        "hora": "13:00"
+      },
+      {
+        "motivo": "DERMATOLOGIA",
+        "fecha": "2023-12-28",
+        "hora": "17:30"
+      }
+    ]
+  },
+  {
+    "DNI": "432566666",
+    "nombre": "Nahuel",
+    "apellido": "Iuzzolino",
+    "correo": "nahuel.iuzzolino@gmail.com",
+    "contrasena": "21643743",
+    "tipo": "paciente",
+    "obra_social": "Avalian",
+    "afiliado": "76878",
+    "turnos": [
+      {
+        "motivo": "GINECOLOGIA",
+        "fecha": "2023-12-29",
+        "hora": "12:30"
+      }
+    ]
+  }
+]

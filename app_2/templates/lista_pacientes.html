@@ -1,0 +1,55 @@
+{% extends "conexiones.html" %}
+
+{% block content %}
+<body>
+      <div id="cabezal_sticky">
+        <div class="sticky-lg-top" id="sticky_top">
+            <div>
+                <div class="row" id="reduccion_fondo">
+                    <div id="primer_columna" class="col text-center">
+                        <figure>
+                            <a href="/">
+                                <img id="icon_paciente" src="static/img/user_icon.png" alt="user_icono"> 
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="col-8" id="credenciales_paciente">
+                        <label>PACIENTE:</label>
+                        <h8>  {{ nombre_usuario_actual }} </h8>
+                        <br>   <!--<a href="/" id="href_paciente"></a>-->    
+                        <label for="inputId">DNI:</label>
+                        <h8> {{ dni_usuario_actual }} </h8>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    <div id="tabla_lista" class="container">
+      <h1 id="titulo_seleccionar_hora" class="text-center">LISTA DE PACIENTES</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">DNI</th>
+            <th scope="col">Mail</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for usuario in usuarios %}
+            {%if usuario.tipo == 'paciente'%} 
+              <tr>
+                <th scope="row"></th>
+                  <td>{{usuario.nombre}}</td>
+                  <td>{{usuario.apellido}}</td>
+                  <td>{{usuario.DNI}}</td>
+                  <td>{{usuario.correo}}</td>
+              </tr>
+            {%endif%}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+</body>
+{% endblock content %}

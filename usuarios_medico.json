@@ -1,0 +1,47 @@
+[
+  {
+    "nombre": "Lautaro",
+    "apellido": "Popo",
+    "DNI": "216437439",
+    "correo": "16716523",
+    "contrasena": "safsfafsa@gmail.com",
+    "tipo": "medico",
+    "especialidad": "NUTRICION Y DIABETOLOGIA"
+  },
+  {
+    "nombre": "Lautaro",
+    "apellido": "Popo",
+    "DNI": "2164374",
+    "correo": "16716523",
+    "contrasena": "safsfafsa@gmail.com",
+    "tipo": "medico",
+    "especialidad": "NUTRICION Y DIABETOLOGIA"
+  },
+  {
+    "nombre": "Lautaro",
+    "apellido": "Popo",
+    "DNI": "216437",
+    "correo": "safsfafsa@gmail.com",
+    "contrasena": "safsfafsa@gmail.com",
+    "tipo": "medico",
+    "especialidad": "NUTRICION Y DIABETOLOGIA"
+  },
+  {
+    "nombre": "Lautaro",
+    "apellido": "Popo",
+    "DNI": "21643",
+    "correo": "16716523",
+    "contrasena": "21643743",
+    "tipo": "medico",
+    "especialidad": "NUTRICION Y DIABETOLOGIA"
+  },
+  {
+    "nombre": "Lautaro",
+    "apellido": "Popo",
+    "DNI": "2164",
+    "correo": "safsfafsa@gmail.com",
+    "contrasena": "21643743",
+    "tipo": "medico",
+    "especialidad": "NUTRICION Y DIABETOLOGIA"
+  }
+]

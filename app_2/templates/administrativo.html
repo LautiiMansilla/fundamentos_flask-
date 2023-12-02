@@ -1,0 +1,39 @@
+{% extends "conexiones.html" %}
+
+{% block content %}
+<body>
+    <figure id="head_medico">
+        <div class="container" >
+            <div class="row">
+                <div id="primer_columna" class="col text-center">
+                    <figure>
+                        <a href="/">
+                            <img id="icon_medico" src="static/img/user_icon.png" alt="user_icono">
+                        </a>
+                    </figure>
+                    <h4 id="titulo_admi"class="text-center">BIENVENIDO</h4>
+                    <h4 id="titulo_admi"class="text-center">ADMINISTRATIVO</h4>
+                </div>
+            </div>
+        </div>
+    </figure>
+    <br>
+    <br>
+    <div id="tres_botones_admin" class="container">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a id="tres_botones_admin" class="nav-link active" aria-current="page" href="lista_medico">LISTA DE MEDICOS</a>
+            </li>
+            <li class="nav-item">
+              <a id="tres_botones_admin" class="nav-link" href="lista_pacientes_admin">LISTA DE PACIENTES</a>
+            </li>
+            <li class="nav-item">
+              <a id="tres_botones_admin" class="nav-link" href="lista_turnos">TURNOS</a>
+            </li>
+            <li class="nav-item">
+                <a id="tres_botones_admin" class="nav-link" href="registrar_medicos">REGISTRAR MEDICO</a>
+            </li>
+        </ul> 
+      </div>
+</body>
+{% endblock content %}

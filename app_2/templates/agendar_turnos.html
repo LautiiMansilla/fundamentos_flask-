@@ -1,0 +1,129 @@
+<!-- templates/agendar_turnos.html -->
+{% extends "conexiones.html" %}
+{% block content %}
+<body>
+    <div id="cabezal_sticky">
+        <div class="sticky-lg-top" id="sticky_top">
+            <div>
+                <div class="row" id="reduccion_fondo">
+                    <div id="primer_columna" class="col text-center">
+                        <figure>
+                            <a href="/">
+                                <img id="icon_paciente" src="static/img/user_icon.png" alt="user_icono"> 
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="col-8" id="credenciales_paciente">
+                        <label>PACIENTE:</label>
+                        <h8>  {{ nombre_usuario_actual }} </h8>
+                        <br>   <!--<a href="/" id="href_paciente"></a>-->    
+                        <label for="inputId">DNI:</label>
+                        <h8> {{ dni_usuario_actual }} </h8>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h1 id="agendarturno_titulo" class="text-center">Agendar Turnos </h1>
+        {% if message %}
+        <div class="alert alert-info">
+            {{ message }}
+        </div>
+    {% endif %}
+</div> 
+
+    </div> 
+    <form action="{{ url_for('agendar_turnos') }}" method="post">
+        <div class="container px-4 text-center">
+            <div class="row gx-5">
+                <div class="col">
+                    <div class="col">
+                        <div class="p-3">
+                            <h5 id="agendarturno_especialidades" for="motivo">Motivo:</h5>
+                            <select id="agendarturno_select" name="motivo" required>
+                                {% for motivo in motivos_disponibles %}
+                                    <option value="{{ motivo }}">{{ motivo }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h5 id="agendarturno_fecha" for="fecha">Fecha:</h5>
+                        <input type="date" id="fecha" name="fecha" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="p-3">
+                        <label for="hora">Hora:</label>
+                        <select type="input" id="hora" name="hora" required>
+                            {% for hora in horas_disponibles %}
+                                <option value="{{ hora }}">{{ hora }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="p-3">
+                        <input type="submit" value="Confirmar Turno">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form> 
+
+
+    <!--TERMINA EL FRONT-->
+    <script>
+        window.onload = function() {
+            // Configurar fecha mínima como hoy
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById('fecha').setAttribute('min', today);
+    
+            // Obtener el último día del mes actual
+            var lastDay = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0);
+            var lastDayOfMonth = lastDay.toISOString().split('T')[0];
+    
+            // Configurar fecha máxima como el último día del próximo mes
+            var nextMonth = new Date();
+            nextMonth.setMonth(nextMonth.getMonth() + 1);
+            var lastDayOfNextMonth = new Date(nextMonth.getFullYear(), nextMonth.getMonth() + 1, 0);
+            var lastDayOfNextMonthISO = lastDayOfNextMonth.toISOString().split('T')[0];
+            document.getElementById('fecha').setAttribute('max', lastDayOfNextMonthISO);
+    
+            var fechaInput = document.getElementById('fecha');
+            fechaInput.addEventListener('change', function() {
+                var selectedDate = new Date(this.value);
+                var dayOfWeek = selectedDate.getDay();
+                var feriados = ['2023-12-25', '2023-12-31']; // Actualiza con tus feriados
+    
+                // Verificar si la fecha está dentro del rango permitido
+                if (selectedDate < new Date(today) || selectedDate > new Date(lastDayOfNextMonthISO)) {
+                    alert('Selecciona otra fecha. Solo se permiten fechas dentro del rango permitido.');
+                    this.value = ''; // Limpiar el campo de fecha
+                    this.classList.add('is-invalid'); // Cambiar el color de fondo a rojo
+                } else if (dayOfWeek === 0 || dayOfWeek === 6 || feriados.includes(this.value)) {
+                    alert('Selecciona otra fecha. No se permiten sábados, domingos ni feriados.');
+                    this.value = ''; // Limpiar el campo de fecha
+                    this.classList.add('is-invalid'); // Cambiar el color de fondo a rojo
+                } else {
+                    // Si la fecha es válida, quitar la clase de "is-invalid"
+                    this.classList.remove('is-invalid');
+                }
+            });
+    
+            // Añadir un listener para el evento focus, para quitar la clase de "is-invalid" al enfocar en el campo
+            fechaInput.addEventListener('focus', function() {
+                this.classList.remove('is-invalid');
+            });
+        }
+    </script> 
+</body>
+{% endblock content %}
+</html>
+{%block boton_menu%}
+    <button class="btn btn-primary" id="b_atras"><a href="/mis_turnos" id="link_menu">Ver mis turnos</a></button>
+    <button class="btn btn-primary" id="b_atras"><a href="/paciente" id="link_menu">Menu</a></button>
+{%endblock boton_menu%}
+
+

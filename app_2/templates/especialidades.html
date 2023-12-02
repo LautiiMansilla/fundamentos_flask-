@@ -1,0 +1,70 @@
+{% extends "conexiones.html" %}
+{% block content %}
+    <body>
+        <div id="cabezal_sticky">
+            <div class="sticky-lg-top" id="sticky_top">
+                <div>
+                    <div class="row" id="reduccion_fondo">
+                        <div id="primer_columna" class="col text-center">
+                            <figure>
+                                <a href="/">
+                                    <img id="icon_paciente" src="static/img/user_icon.png" alt="user_icono"> 
+                                </a>
+                            </figure>
+                        </div>
+                        <div class="col-8" id="credenciales_paciente">
+                            <label>PACIENTE:</label>
+                            <h8>  {{ nombre_usuario_actual +" "+ apellido_usuario_actual}} </h8>
+                            <br>   <!--<a href="/" id="href_paciente"></a>-->    
+                            <label for="inputId">DNI:</label>
+                            <h8> {{ dni_usuario_actual }} </h8>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="titulos_especialidades"class="container">
+            <div class="row">
+                <div class="col">
+                    <div>
+                        <h2>PROFESIONALES</h2>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div>
+                        <h2 id="especialidad_titulo">ESPECIALIDADES</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="titulos_especialidades"class="container">
+            <div class="row">
+                <div class="col">
+                    {%for especialidad in especialidades%}
+                        <div id="_1">
+                            <div class="col text-center">
+                                <h1>{{especialidad}}</h1>
+                                <p>Hola aca va a ir un texto muy extenso que falta desarrollar</p>
+                            </div>
+                            {%set contador = 0%}
+                            {% for usuario in usuarios %}
+                                {%if usuario.tipo == 'medico' and usuario.especialidad == especialidad%} 
+                                    {%if contador < 2%}
+                                        <div id="nombre_especialista" class="col">
+                                            <h4>🧑🏾‍⚕️{{usuario.nombre +" "+ usuario.apellido}}</h4>
+                                            {%set contador = contador + 1%}
+                                        </div>
+                                    {%endif%}   
+                                {%endif%}
+                            {% endfor %}
+                        </div>
+                    {%endfor%}
+                    
+                </div>
+                <div class="col-9">
+                    
+                </div>
+            </div>
+        </div>
+    </body>
+{% endblock content %}

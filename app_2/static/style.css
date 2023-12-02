@@ -1,0 +1,262 @@
+/*estilo de todas las las paginas, por favor usar las clases y los ids con cuidado! */
+/*INDEX PRIMERA PAGINA*/
+.body_index{
+  background-image: url('img/fondo_index.png');
+  background-attachment: fixed;
+  background-size: cover;
+  padding: 10%;
+}
+.titulo_index{
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color:white;
+  font-size:400%;
+}
+#boton_index{
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size:120%;
+  color:white;
+  background-color: #3681d6;
+  text-decoration: none;
+}
+.text_menu_index{
+  text-align: center;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color:white;
+  font-size: 20px;
+}
+/*MENU DE PACIENTE-INICIAR SESION O REGISTRAR*/
+#botones_menu_pacientes{
+  padding-top: 5%;
+}
+#container_menu_paciente{
+  background-image: url('img/fondo_index.png');
+  background-attachment: fixed;
+  background-size: cover;
+  padding: 10%;
+}
+#crear_o_iniciar{
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size:120%;
+  color: white;
+  text-decoration: none;
+  background-color: #3681d6;
+}
+/*Iniciar_sesion_p*/
+#body_iniciar_sesion{
+  background-image: url('img/fondo_index.png');
+  background-attachment: fixed;
+  background-size: cover;
+  padding-top: 10%;
+}
+#iniciar_sesion_p_form{
+  color: grey;
+  height: 110%;
+  width: 110%;
+  padding: 4%;
+  background-color: #0e1e3083;
+  border-radius: 10px;
+}
+#boton_p{
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  width: 100%;
+  height: auto;
+}
+#texto_inicio_sesion_form_p{
+  padding: 5%;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-align: center;
+  color: white;
+}
+#formulario{
+  color:rgb(145, 131, 107);
+}
+/*REGISTRAR_P*/
+#body_registrar_p{
+  background-image: url('img/fondo_index.png');
+  background-attachment: fixed;
+  background-size: cover;
+  padding-left: 25%;
+  padding-top: 5%;
+  color:white;
+}
+#registrar_p_formulario{
+  width: 70%;
+  background-color: #0e1e30;
+  border-radius: 10px;
+  padding-top: 1%;
+  padding-bottom:1%;
+}
+#registrar_p_alerta{
+  width: 100%;
+  height: auto;
+}
+/*PACIENTE PAGINA*/
+#sticky_top{
+  background-color: #3681d6;
+  width: auto;
+  height: 20%;
+}
+
+#icon_paciente{
+  margin-left: 5%;
+  padding-top: 20px;
+  width: auto;
+  height: 90px;
+}
+#credenciales_paciente{
+  color: white;
+  margin: 5%;
+}
+#paciente_cards{
+  padding-top:2%;
+  margin:5px;
+  padding-bottom: 8%;
+}
+#botones_turnos{
+  font-size:120%;
+  color: white;
+  text-decoration: none;
+  background-color: #3681d6;
+  font-size: 12px;
+  width: 50%;
+  height: auto;
+  margin: 1%;
+}
+#reduccion_fondo{
+  width: 59%;
+}
+#href_paciente{
+  color:white;
+  text-decoration: none;
+}
+#nombre_hospital{
+  text-align: justify;
+}
+/*INICIAR SESION MEDICOS*/
+#boton_m{
+  padding-top: 5%;
+}
+/*REGISTRAR MEDICOS*/
+#motivo{
+  width: 100%;
+}
+/*PAGINA MEDICO*/
+#head_medico{
+  background-color: #3681d6;
+}
+#icon_medico{
+  padding-top:1%;
+  width:60px;
+  height: auto;
+}
+#botones_contenedor{
+  background-color: #3681d68e;
+}
+#turnos_de_hoy{
+  margin-top: 3%;
+  color: #3681d6;
+}
+#botones_m{
+  color:white;
+  background-color:#3681d6;
+  text-decoration: none;
+  width: 103%;
+}
+#bienvenida_texto{
+  color:white ;
+}
+.accordion{
+  margin:0.5%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+/*ESPECIALIDADES*/
+#especialidad_titulo{
+  margin-left: 18%;
+}
+#titulos_especialidades{
+  margin: 5%;
+}
+#contenedor_lista_pacientes{
+  margin-top: 5%;
+  background-color: #9dadd4;
+}
+#titulo_lista_paciente{
+  margin-top: 5%;
+}
+#_1{
+  color:white;
+  background-color: #3681d688;
+}
+#nombre_especialista{
+  margin-left: 5%;
+}
+/*BOTONES ATRAS Y A DELANTE*/
+#botones_atras_adelante{
+  margin-top:10%;
+  margin-bottom: 10%;
+  background-color: #3681d67a;
+}
+#boton_a_index{
+  color:white;
+  text-decoration: none;
+}
+#b_atras{
+  margin: 5%;
+}
+#link_menu{
+  text-decoration: none;
+  color:white;
+}
+/*AGENDAR TURNO*/
+#agendarturno_titulo{
+  margin: 5%;
+  color:#3681d6
+}
+/*SELECCIONAR HORA*/
+#titulo_seleccionar_hora{
+  color: #3681d6;
+}
+#titulo_seleccionar_hora{
+  margin: 4%;
+  color:#3681d6
+}
+/*ADMINISTRATIVO*/
+#tres_botones_admin{
+  color: yellow;
+  font-size: larger;
+  background-color: #3681d6;
+  text-decoration:solid;
+}
+#titulo_admi{
+  color: white;
+}
+#contenedor_lista_admin{
+  margin: 5%;
+  background-color: #3681d6;
+}
+#nombre_paciente{
+  text-decoration: solid;
+  text-decoration:double;
+}
+/*LISTA_PACIENTES*/
+.table{
+  margin: 5%;
+}
+/*MIS DATOS PACIENTE*/
+#texto_mis_datos{
+  background-color: #3681d698;
+}
+/*LISTA DE TURNOS*/
+#tabla_de_turnos_a{
+  text-align: center;
+  margin-left: 25%;
+}
+#cabezal_tabla{
+  margin: 5%;
+  background-color: #3681d67e;
+}
+#eliminar_turno_boton{
+  background-color: #77ace9;
+  color: white;
+}

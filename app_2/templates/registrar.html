@@ -1,0 +1,53 @@
+<!--ESTA ES UNA PAGINA HIJA DE LA PAGINA LLAMADA LAYOUT-->
+{% extends "layout.html" %}
+
+{% block title %}Principal{% endblock title %}
+
+{% block contenido %}
+
+<div id="formulario" class="vstack gap-2 col-md-3 mx-auto" style="width: 30%">
+    <div class="row">
+        <div class="text-center">
+            <form action="/registrar" method="post">
+                <div class="mx-auto p-2" style="width: 100%;">
+                    <label for="nombreInput" class="form-label text-center">Nombre</label>
+                    <input id="nombreInput" class="form-control text-center" type="text" placeholder="Ingresa tu nombre" name="nombre" required>
+                </div>
+                <div class="mx-auto p-2" style="width: 100%;">
+                    <label for="apellidoInput" class="form-label text-center">Apellido</label>
+                    <input id="apellidoInput" class="form-control text-center" type="text" placeholder="Ingresa tu apellido" name="apellido" required>
+                </div>
+                <div class="mx-auto p-2" style="width: 100%;">
+                    <label for="emailInput" class="form-label text-center">Email</label>
+                    <input id="emailInput" class="form-control text-center" type="email" placeholder="Ingresa tu email" name="email" required>
+                </div>
+                <div class="mx-auto p-2" style="width: 100%;">
+                    <label for="passwordInput" class="form-label text-center">Contraseña</label>
+                    <input id="passwordInput" class="form-control text-center" type="password" placeholder="Ingresa tu contraseña" name="password" required>
+                </div>
+                <div class="mx-auto p-2" style="width: 100%;">
+                    <label for="dniInput" class="form-label text-center">DNI</label>
+                    <input id="dniInput" class="form-control text-center" type="text" placeholder="Ingresa tu DNI" name="dni" required>
+                </div>
+                <div class="mx-auto p-2" style="width: 100%;">
+                    <label for="obraSocialInput" class="form-label text-center">Obra Social</label>
+                    <input id="obraSocialInput" class="form-control text-center" type="text" placeholder="Ingresa tu obra social" name="obra_social" required>
+                </div>
+                <div class="mx-auto p-2" style="width: 100%;">
+                    <label for="afiliadoInput" class="form-label text-center">Número de Afiliado</label>
+                    <input id="afiliadoInput" class="form-control text-center" type="text" placeholder="Ingresa tu número de afiliado" name="afiliado" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Registrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock contenido %}
+{%if error%}
+    <p style="color: red;">{{ error }}</p>
+{%endif%}

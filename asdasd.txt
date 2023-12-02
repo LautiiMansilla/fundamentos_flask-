@@ -1,0 +1,33 @@
+especialidades_disponibles = ["CARDIOLOGIA","CLINICA MEDICA", "DERMATOLOGIA", "GASTROENTEROLOGIA","GINECOOGIA","MAMOGRAFIA","NEUMONOLIGA","NEUROOGIA","NUTRICION Y DIABETOLOGIA","OBSTETRICIA","OFTALMOLOGIA","ONCOLOGIA","OTORRINONARINGOLOGIA","PEDIATRIA","TRAUMATOLOGIA Y ORTOPEDIA","UROLOGIA"]
+especialidad_paciente=[]
+especialidad_solicitada = input("Ingrese la especialidad: ")
+especialidad_solicitada = especialidad_solicitada.upper()
+# verifico si la hora ingresada esta en la lista y la segunda parte mira si no esta en la lista de especialidades
+if especialidad_solicitada in especialidades_disponibles and especialidad_solicitada not in especialidad_paciente:
+    especialidad_paciente.append(especialidad_solicitada)
+    print(f"La especialidad {especialidad_solicitada} se ha agregado correctamente.")
+else:
+    print("La especialidad seleccionado no esta disponible.")
+
+
+dias_disponibles = ["LUNES","MARTES","MIERCOLES","JUEVES","VIERNES","SABADO"]
+dias_paciente=[]
+dia_solicitado = input("Ingrese el día: ")
+dia_solicitado = dia_solicitado.upper()
+# verifico si la hora ingresada esta en la lista y la segunda parte mira si no esta en la lista de dias
+if dia_solicitado in dias_disponibles and dia_solicitado not in dias_paciente:
+    dias_paciente.append(dia_solicitado)
+    print(f"Día {dia_solicitado} agregado correctamente.")
+else:
+    print("El día seleccionado no esta disponible.")
+
+
+horas_disponibles = ["8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00","11:30", "12:00", "12:30", "13:00", "13:30", "14:00","14:30", "15:00", "15:30", "16:00", "16:30", "17:00","17:30", "18:00"]
+horas_paciente= []
+hora_solicitada = input("Ingrese el horario: ")
+# verifico si la hora ingresada esta en la lista y la segunda parte mira si no esta en la lista de pacientes
+if hora_solicitada in horas_disponibles and hora_solicitada not in horas_paciente:
+    horas_paciente.append(hora_solicitada)
+    print(f"Hora {hora_solicitada} agregada correctamente.")
+else:
+    print("El horario seleccionado no esta disponible.")
