@@ -5,8 +5,8 @@ from turnos import Turno
 from datetime import datetime
 from turnos import  Paciente, obtener_turnos_del_paciente, obtener_dni_del_usuario_actual, agregar_turno, obtener_horas_disponibles, obtener_motivos_disponibles, cargar_usuarios_desde_json
 from flask import flash,session
-from turnos import iniciar_sesion, guardar_turno_en_json,obtener_nombre_del_usuario_actual,obtener_obra_social_del_usuario_actual, agregar_turno,cargar_usuarios_medicos_desde_json,registrar_medico
-from turnos import iniciar_sesion_admin,obtener_apellido_del_usuario_actual,iniciar_sesion_medico,obtener_afiliado_del_usuario_actual, enviar_correo,obtener_mail_del_usuario_actual
+from turnos import iniciar_sesion, guardar_turno_en_json,obtener_nombre_del_usuario_actual,obtener_obra_social_del_usuario_actual, agregar_turno,cargar_usuarios_medicos_desde_json,registrar_medico,buscar_usuario_por_correo,generar_token,enviar_correo_olvido_contrasena
+from turnos import iniciar_sesion_admin,obtener_apellido_del_usuario_actual,iniciar_sesion_medico,obtener_afiliado_del_usuario_actual, enviar_correo,obtener_mail_del_usuario_actual,es_contrasena_segura,guardar_datos_en_json,validar_token
 from flask_mail import Mail
 
 # se crea una aplicacion web flask
@@ -233,20 +233,28 @@ def registrar_p():
         dni = request.form['dni']
         obra_social = request.form['obra_social']
         afiliado = request.form['afiliado']
-         # Carga los usuarios existentes desde un archivo JSON
-        usuarios = cargar_usuarios_desde_json("usuarios.json")
-        # Verifica si ya existe un usuario con el mismo DNI
-        for usuario_data in usuarios:
-            if isinstance(usuario_data, Paciente) and usuario_data.DNI == dni:
-                mensaje = "Ya existe un usuario con el mismo DNI. Por favor, ingrese otro DNI."
-         # Si no se encuentra un DNI duplicado, procede con el registro
-        if mensaje is None:
-            paciente = Paciente(nombre, apellido, email, password, dni, obra_social, afiliado)
-            try:
-                registrar_paciente(paciente)
-                mensaje = "Registro exitoso. Ahora puede iniciar sesión."
-            except Exception as e:
-                mensaje = f'Error al registrar al paciente: {str(e)}'
+
+        # Verifica si la contraseña es segura
+        if not es_contrasena_segura(password):
+            mensaje = "La contraseña no cumple con los requisitos de seguridad. Minimo 8 caracteres, 1 mayúscula, 1 minúscula, 1 número  "
+        else:
+            # Carga los usuarios existentes desde un archivo JSON
+            usuarios = cargar_usuarios_desde_json("usuarios.json")
+
+            # Verifica si ya existe un usuario con el mismo DNI
+            for usuario_data in usuarios:
+                if isinstance(usuario_data, Paciente) and usuario_data.DNI == dni:
+                    mensaje = "Ya existe un usuario con el mismo DNI. Por favor, ingrese otro DNI."
+
+            # Si no se encuentra un DNI duplicado y la contraseña es segura, procede con el registro
+            if mensaje is None:
+                paciente = Paciente(nombre, apellido, email, password, dni, obra_social, afiliado)
+                try:
+                    registrar_paciente(paciente)
+                    mensaje = "Registro exitoso. Ahora puede iniciar sesión."
+                except Exception as e:
+                    mensaje = f'Error al registrar al paciente: {str(e)}'
+
     # Renderiza la página de registro de pacientes con el mensaje apropiado
     return render_template("registrar_p.html", mensaje=mensaje)
 
@@ -406,6 +414,60 @@ def eliminar_turno():
     with open('usuarios.json') as file:
         data = json.load(file)
     return render_template("lista_turnos.html", usuarios=data)
+
+@app.route('/olvido_contrasena', methods=['GET', 'POST'])
+def olvido_contrasena():
+    if request.method == 'POST':
+        correo = request.form.get('correo')
+        usuario = buscar_usuario_por_correo(correo)
+        if usuario:
+            token = generar_token(usuario)
+            # Redirigir a la página 'ingresar_token' y proporcionar correo y token como argumentos
+            return redirect(url_for('ingresar_token', correo=correo, token=token))
+        else:
+            # Informar al usuario que el correo no está registrado
+            return render_template('error.html')
+    return render_template('ingresar_mail.html')
+
+@app.route('/ingresar_token/<correo>/<token>', methods=['GET', 'POST'])
+def ingresar_token(correo, token):
+    if request.method == 'POST':
+        token = request.form['token']
+
+        usuarios = cargar_usuarios_desde_json()
+        usuario = buscar_usuario_por_correo(correo)
+
+        if usuario and usuario['token'] == token:
+            # Token válido, redirige al usuario a restablecer la contraseña
+            return redirect(url_for('restablecer_contrasena', token=token))
+        else:
+            # Token no válido, muestra un mensaje de error
+            return render_template('error.html')
+
+    return render_template('ingresar_token.html')
+
+@app.route('/restablecer_contrasena', methods=['GET', 'POST'])
+def restablecer_contrasena(token):
+    # Validar el token
+    usuario = validar_token(token)
+    if usuario:
+        if request.method == 'POST':
+            nueva_contrasena = request.form.get('nueva_contrasena')
+            # Actualizar la contraseña del usuario
+            usuario['contrasena'] = nueva_contrasena
+            # Almacenar el usuario actualizado en el archivo JSON
+            usuarios = cargar_usuarios_desde_json("usuarios.json")
+            for u in usuarios:
+                if u.get("correo") == usuario.get("correo"):
+                    u['contrasena'] = nueva_contrasena
+                    break
+            guardar_datos_en_json(usuarios, "usuarios.json")
+            # Redirigir a la página de éxito
+            return redirect(url_for('restablecimiento_exitoso'))
+        return render_template('nueva_contrasenia.html', token=token)
+    else:
+        # Informar al usuario que el token es inválido o ha expirado
+        return render_template('error.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
