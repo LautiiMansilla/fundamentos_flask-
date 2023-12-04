@@ -1,0 +1,45 @@
+{% extends "conexiones.html" %}
+
+
+
+{% block content %}
+<body>
+    <form action="/olvido_contrasena" method="POST">
+        <div id="ingresar_mail_form" class="container text-center">
+            <div class="row">
+                <div class="col">
+                </div>
+                <div id="contenedor_ingresar_mail"class="col">
+                    <br>
+                    <h5>Porfavor ingrese el Token</h5>
+                    <br>
+                    <p>
+                        Para poder cambiar la contraseña actual de su cuenta se le enviara un token a su correo electronico.
+                        Porfavor ingrese el token que se le fue enviado al correo electronico.
+                    </p>
+                    <div class="input-group mb-3">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">@</span>
+                            <div class="form-floating">
+                              <input name="correo" type="email" class="form-control" id="floatingInputGroup1" placeholder="Correo electronico" required>
+                              <label for="floatingInputGroup1">Mail</label>
+                            </div>
+                        </div>
+                        <span class="input-group-text"></span>
+                        <div class="form-floating">
+                          <input name="token" type="text" class="form-control" id="floatingInputGroup1" placeholder="token" required>
+                          <label for="floatingInputGroup1">Token</label>
+                        </div>
+                    </div>
+                    <input class="btn btn-primary" type="submit"></button>
+                    <br>
+                    <br>
+                    </div>
+                <div class="col">
+
+                </div>
+            </div>
+        </div>
+    <form>
+</body>
+{% endblock content %}
