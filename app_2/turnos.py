@@ -4,6 +4,9 @@ from usuarios import Usuario
 from flask import session,jsonify
 from datetime import datetime, timedelta
 from flask_mail import Mail,Message
+import re
+import secrets
+
 
 class Paciente(Usuario):
     
@@ -12,9 +15,13 @@ class Paciente(Usuario):
         self.obra_social = obra_social
         self.afiliado = afiliado
         self.turnos = []
+        self.token_olvido_contrasena = None
 
     def agregar_turno(self, turno):
         self.turnos.append(turno)
+    
+    def asignar_token_olvido_contrasena(self, token):
+        self.token_olvido_contrasena = token
 
     def to_dict(self): #Elegimos el formato con el cual queremos que se guarde en el json
         usuario_dict = super().to_dict() #Llamamos a la clase padre
@@ -436,3 +443,114 @@ def enviar_correo(paciente, turno):
         print("DEBUG: Correo enviado correctamente")
     except Exception as e:
         print(f"DEBUG: Error al enviar el correo: {str(e)}")
+        
+def es_contrasena_segura(contrasena):
+    """
+    Verifica si la contraseña cumple con ciertos criterios de seguridad.
+
+    Criterios:
+    - Al menos 8 caracteres
+    - Al menos una letra minúscula
+    - Al menos una letra mayúscula
+    - Al menos un número
+    - Al menos un carácter especial (por ejemplo, !, @, #, $, %, etc.)
+
+    Args:
+    - contrasena (str): La contraseña a verificar.
+
+    Returns:
+    - bool: True si la contraseña es segura, False en caso contrario.
+    """
+    # Verificar la longitud mínima
+    if len(contrasena) < 8:
+        return False
+
+    # Verificar al menos una letra minúscula
+    if not re.search(r'[a-z]', contrasena):
+        return False
+
+    # Verificar al menos una letra mayúscula
+    if not re.search(r'[A-Z]', contrasena):
+        return False
+
+    # Verificar al menos un número
+    if not re.search(r'\d', contrasena):
+        return False
+
+    # La contraseña cumple con todos los criterios
+    return True
+
+def buscar_usuario_por_correo(correo):
+    # Cargar pacientes desde el archivo JSON o la fuente de datos que utilices
+    pacientes = cargar_usuarios_desde_json("usuarios.json")
+
+    # Buscar el paciente por correo en la lista de pacientes
+    for paciente in pacientes:
+        if paciente.correo == correo:
+            # Devolver el objeto de paciente si se encuentra
+            return paciente
+
+    # Si no se encuentra ningún paciente con el correo proporcionado, devolver None
+    return None
+
+def generar_token(usuario):
+    # Generar un token único
+    token = secrets.token_urlsafe(32)
+
+    # Almacena el token asociado al usuario (puedes usar la sesión, base de datos, etc.)
+    usuario.asignar_token_olvido_contrasena(token)
+
+    # Retorna el token generado
+    return token
+
+def enviar_correo_olvido_contrasena(usuario):
+    app = Flask(__name__)
+
+    # Configuración de Flask-Mail para Gmail
+    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+    app.config['MAIL_PORT'] = 587  # El puerto para TLS
+    app.config['MAIL_USE_TLS'] = True
+    app.config['MAIL_USE_SSL'] = False
+    app.config['MAIL_USERNAME'] = 'hospital.buencorazon@gmail.com'  # Tu dirección de correo de Gmail
+    app.config['MAIL_PASSWORD'] = 'sgfw vdkr khhv slcb'  # La contraseña de tu cuenta de Gmail o la contraseña de aplicación generada
+
+    mail = Mail(app)    
+
+    # Generar un token único para restablecer la contraseña
+    token = generar_token(usuario)
+
+    # Guardar el usuario actualizado en el archivo JSON
+    usuarios = cargar_usuarios_desde_json("usuarios.json")
+    for u in usuarios:
+        if u.get("correo") == usuario.get("correo"):
+            u['token_olvido_contrasena'] = token
+            break
+    guardar_datos_en_json(usuarios, "usuarios.json")
+
+    # Configurar el mensaje
+    mensaje = Message(subject='Restablecer Contraseña',
+                      sender='hospital.buencorazon@gmail.com',
+                      recipients=[usuario['correo']])
+
+    # Contenido del correo (puedes usar HTML también)
+    mensaje.body = f'Haz clic en el siguiente enlace para restablecer tu contraseña: ' \
+                   f'http://tudominio.com/restablecer/{token}'
+
+    try:
+        # Enviar el correo
+        with app.app_context():
+            mail.send(mensaje)
+        print("DEBUG: Correo de restablecimiento de contraseña enviado correctamente")
+    except Exception as e:
+        print(f"DEBUG: Error al enviar el correo de restablecimiento de contraseña: {str(e)}")
+        
+def validar_token(usuario, token):
+    # Verificar si el usuario tiene un token y si coincide con el proporcionado
+    usuario_token = obtener_token_del_usuario(usuario)
+
+    # Verificar si el token proporcionado coincide con el almacenado en el usuario
+    return usuario_token and secrets.compare_digest(usuario_token, token)
+
+def obtener_token_del_usuario(usuario):
+    # Verificar si el usuario tiene un atributo 'token' y devolverlo
+    return getattr(usuario, 'token', None)
